@@ -29,7 +29,7 @@ An automated customer support workflow built with n8n that retrieves new tickets
 
 ## Airtable Database
 
-<img width="1440" height="786" alt="Airtable" src="https://github.com/user-attachments/assets/bf788b3a-1667-4c7e-8d0d-20ed36a05971" />
+<img width="1440" height="787" alt="Airtable" src="https://github.com/user-attachments/assets/caf3f061-3b23-4511-96a7-af08056dbdbf" />
 
 
 ---
