@@ -1,3 +1,11 @@
+![n8n](https://img.shields.io/badge/n8n-Automation-orange)
+![Airtable](https://img.shields.io/badge/Airtable-Database-blue)
+![Gmail API](https://img.shields.io/badge/Gmail-API-red)
+![OAuth2](https://img.shields.io/badge/OAuth2-Secure-green)
+
+
+
+
 # 🤖 AI Customer Support Manager | n8n + Airtable + Gmail Automation
 
 An automation workflow built with **n8n** that retrieves customer support tickets from Airtable, sends email notifications using Gmail API, and automatically updates ticket status after successful delivery.
