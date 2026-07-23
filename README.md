@@ -22,13 +22,15 @@ An automated customer support workflow built with n8n that retrieves new tickets
 
 ## Workflow
 
-![Workflow](screenshots/workflow.png)
+![Workflow](<img width="1440" height="786" alt="n8n Workflow Airtable Ticket Notif" src="https://github.com/user-attachments/assets/81191905-5e77-4288-8047-f4ada2ecd797" />
+)
 
 ---
 
 ## Airtable Database
 
-![Airtable](screenshots/airtable.png)
+![Airtable](<img width="1440" height="786" alt="Airtable Ai Customer Support Manager" src="https://github.com/user-attachments/assets/fefb9a93-72aa-4961-9765-a8cbdb8d7bde" />
+)
 
 ---
 
