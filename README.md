@@ -1,16 +1,21 @@
-# AI Customer Support Manager
+# 🤖 AI Customer Support Manager
 
-An automated customer support workflow built with n8n that retrieves new tickets from Airtable, sends email notifications via Gmail, and automatically updates the ticket status after successful delivery.
+An automation workflow built with **n8n** that retrieves customer support tickets from Airtable, sends email notifications using Gmail API, and automatically updates ticket status after successful delivery.
 
-## Features
+---
 
-- 📅 Daily scheduled automation
-- 📋 Retrieves new tickets from Airtable
-- 📧 Sends email notifications using Gmail API (OAuth2)
-- ✅ Updates ticket status automatically
+## 🚀 Features
+
+- 📅 Daily scheduled automation (8:00 AM)
+- 📋 Retrieves new support tickets from Airtable
+- 📧 Sends emails using Gmail API
+- 🔐 OAuth2 Authentication
+- ✅ Automatically updates ticket status
 - 🔄 Prevents duplicate email notifications
 
-## Tech Stack
+---
+
+## 🛠️ Tech Stack
 
 - n8n
 - Airtable
@@ -20,28 +25,38 @@ An automated customer support workflow built with n8n that retrieves new tickets
 
 ---
 
-## Workflow
+## 📷 Workflow
 
-<img width="1440" height="786" alt="Worfklow" src="https://github.com/user-attachments/assets/5d495071-2d7b-4313-b135-16c23f86e3cf" />
-
-
----
-
-## Airtable Database
-
-<img width="1440" height="787" alt="Airtable" src="https://github.com/user-attachments/assets/caf3f061-3b23-4511-96a7-af08056dbdbf" />
+<img width="1440" height="786" alt="Worfklow" src="https://github.com/user-attachments/assets/344d0502-ce4c-425c-b338-1444ecf5fb33" />
 
 
 ---
 
-## Workflow Process
+## 📊 Airtable Database
 
-1. Schedule Trigger runs every day at 8:00 AM.
-2. Search Airtable for unsent tickets.
-3. Check if new tickets exist.
-4. Send email through Gmail.
-5. Update Airtable record as "Reply Sent".
+<img width="1440" height="787" alt="Airtable" src="https://github.com/user-attachments/assets/e154cf64-5738-4588-8f4c-d233b5325589" />
 
-## Author
 
-Rodron Camangyan
+---
+
+## 🔄 Workflow Process
+
+1. Schedule Trigger runs every day at **8:00 AM**
+2. Search Airtable for unsent tickets
+3. Check if new tickets exist
+4. Send email notification through Gmail
+5. Update Airtable record as **Reply Sent**
+
+---
+
+## 💡 Use Case
+
+This project demonstrates how business processes can be automated using no-code/low-code tools to reduce manual work and improve customer support response time.
+
+---
+
+## 👨‍💻 Author
+
+**Rodron Camangyan**
+
+- GitHub: https://github.com/Gdrodron
