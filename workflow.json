@@ -1,0 +1,217 @@
+{
+  "name": "Airtable Ticket Notification - Daily",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "id": "38c1834c-fe67-4a37-9acd-e8a182e94273",
+      "name": "Schedule Trigger (Daily 8AM)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -864,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appJaanFeg2oKM7E1",
+          "mode": "list",
+          "cachedResultName": "Ai Customer Support Manager",
+          "cachedResultUrl": "https://airtable.com/appJaanFeg2oKM7E1"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblMVbQRE754x7Qc6",
+          "mode": "list",
+          "cachedResultName": "Tickets",
+          "cachedResultUrl": "https://airtable.com/appJaanFeg2oKM7E1/tblMVbQRE754x7Qc6"
+        },
+        "filterByFormula": "NOT({Reply Sent})",
+        "options": {}
+      },
+      "id": "4c5c5cb3-8232-49ea-baf8-0b94917aa18a",
+      "name": "Airtable - Find Unsent Tickets",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -624,
+        32
+      ],
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "M3rAD0LFjdVlS58Y",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "aa5809bc-48fb-4100-93de-e7ed2528cc65",
+      "name": "IF - Has New Tickets",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -352,
+        -64
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appJaanFeg2oKM7E1",
+          "mode": "list",
+          "cachedResultName": "Ai Customer Support Manager",
+          "cachedResultUrl": "https://airtable.com/appJaanFeg2oKM7E1"
+        },
+        "table": {
+          "__rl": true,
+          "mode": "list",
+          "value": "Tickets"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Airtable - Find Unsent Tickets').item.json.id }}",
+            "Reply Sent": true
+          },
+          "matchingColumns": [
+            "id"
+          ]
+        },
+        "options": {}
+      },
+      "id": "8822eccf-d7fa-4a16-a3ad-98e66c0fa339",
+      "name": "Airtable - Mark Reply Sent",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        80,
+        -224
+      ],
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "M3rAD0LFjdVlS58Y",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "rodronlove08@gmail.com",
+        "subject": "{{ $json['Subject'] }}",
+        "message": "<p>Kumusta {{ $json['Customer Name'] }},</p><p>{{ $json['Suggested Reply'] }}</p><p>Kung may karagdagang tanong ka, huwag mag-atubiling mag-reply sa email na ito.</p><p>Salamat,<br>Support Team</p>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        -128,
+        -96
+      ],
+      "id": "4a29c1d3-d52d-4909-9998-f068c5e02904",
+      "name": "Send a message",
+      "webhookId": "032f54ce-f6ec-4ac8-9ecc-f91e4e335337",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "QhksXkwfpbhVkjtf",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger (Daily 8AM)": {
+      "main": [
+        [
+          {
+            "node": "Airtable - Find Unsent Tickets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable - Find Unsent Tickets": {
+      "main": [
+        [
+          {
+            "node": "IF - Has New Tickets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF - Has New Tickets": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Airtable - Mark Reply Sent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "0cb359d5-472c-460b-8726-dc66ccf6631e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "6a5b1a36c8b22dd69305e83ec0dbacf2afffe48dfd15c59bc0c80d097041ac8e"
+  },
+  "nodeGroups": [],
+  "id": "8nORUtERGNlzFzdb",
+  "tags": []
+}
